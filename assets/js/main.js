@@ -1,6 +1,36 @@
 !(function($) {
   "use strict";
 
+  // Theme Toggle Functionality
+  const themeToggle = document.querySelector('.theme-toggle');
+  const themeIcon = themeToggle.querySelector('i');
+  
+  // Check for saved theme preference or default to light mode
+  const currentTheme = localStorage.getItem('theme') || 'light';
+  document.documentElement.setAttribute('data-theme', currentTheme);
+  
+  // Update icon based on current theme
+  function updateThemeIcon(theme) {
+    if (theme === 'dark') {
+      themeIcon.className = 'bx bx-moon';
+    } else {
+      themeIcon.className = 'bx bx-sun';
+    }
+  }
+  
+  // Initialize icon
+  updateThemeIcon(currentTheme);
+  
+  // Theme toggle event listener
+  themeToggle.addEventListener('click', function() {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    updateThemeIcon(newTheme);
+  });
+
   // Hero typed
   if ($('.typed').length) {
     var typed_strings = $(".typed").data('typed-items');
@@ -210,6 +240,13 @@
 
 })(jQuery);
 
+// Theme toggle for non-jQuery functionality
+document.addEventListener('DOMContentLoaded', function() {
+  // Ensure theme is applied on page load
+  const savedTheme = localStorage.getItem('theme') || 'light';
+  document.documentElement.setAttribute('data-theme', savedTheme);
+});
+
 
 /*console print*/
 console.log(
@@ -252,64 +289,3 @@ $$/      $$/  $$$$$$$/ $$$$$$$/        $$$$$$$/   $$$$$$$/     $/     $$$$$$$/ $
                                                                                `,
   "font-family:monospace"
 );
-// Theme Toggle
-const themeToggle = document.getElementById('theme-toggle');
-const body = document.body;
-const themeIcon = themeToggle.querySelector('i');
-
-// Load saved theme
-const savedTheme = localStorage.getItem('theme');
-if (savedTheme === 'dark') {
-  body.classList.add('dark-mode');
-  themeIcon.className = 'bx bx-sun';
-}
-
-themeToggle.addEventListener('click', () => {
-  body.classList.toggle('dark-mode');
-  const isDark = body.classList.contains('dark-mode');
-  themeIcon.className = isDark ? 'bx bx-sun' : 'bx bx-moon';
-  localStorage.setItem('theme', isDark ? 'dark' : 'light');
-});
-
-// Language Toggle
-const languageSelect = document.getElementById('language-select');
-const translations = {
-  en: {
-    'Home': 'Home',
-    'About': 'About',
-    'Portfolio': 'Portfolio',
-    'Resume': 'Resume',
-    'Contact': 'Contact'
-  },
-  fr: {
-    'Home': 'Accueil',
-    'About': 'À propos',
-    'Portfolio': 'Portfolio',
-    'Resume': 'CV',
-    'Contact': 'Contact'
-  }
-};
-
-// Load saved language
-const savedLang = localStorage.getItem('language') || 'en';
-languageSelect.value = savedLang;
-updateLanguage(savedLang);
-
-languageSelect.addEventListener('change', (e) => {
-  const lang = e.target.value;
-  updateLanguage(lang);
-  localStorage.setItem('language', lang);
-});
-
-function updateLanguage(lang) {
-  document.querySelectorAll('[data-en]').forEach(el => {
-    const enText = el.getAttribute('data-en');
-    const frText = el.getAttribute('data-fr');
-    
-    if (lang === 'fr' && frText) {
-      el.textContent = frText;
-    } else if (lang === 'en' && enText) {
-      el.textContent = enText;
-    }
-  });
-}
