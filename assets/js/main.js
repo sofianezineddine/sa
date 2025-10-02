@@ -1,35 +1,55 @@
 !(function($) {
   "use strict";
 
-  // Theme Toggle Functionality
-  const themeToggle = document.querySelector('.theme-toggle');
-  const themeIcon = themeToggle.querySelector('i');
-  
-  // Check for saved theme preference or default to light mode
-  const currentTheme = localStorage.getItem('theme') || 'light';
-  document.documentElement.setAttribute('data-theme', currentTheme);
-  
-  // Update icon based on current theme
-  function updateThemeIcon(theme) {
-    if (theme === 'dark') {
-      themeIcon.className = 'bx bx-moon';
-    } else {
-      themeIcon.className = 'bx bx-sun';
+  // Theme Toggle Functionality - Microsoft Edge Compatible
+  function initThemeToggle() {
+    const themeToggle = document.querySelector('.theme-toggle');
+    if (!themeToggle) return;
+    
+    const themeIcon = themeToggle.querySelector('i');
+    
+    // Check for saved theme preference or default to light mode
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    
+    // Apply theme with fallback for Edge
+    function applyTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      document.body.setAttribute('data-theme', theme);
+      
+      // Force repaint for Edge
+      if (window.navigator.userAgent.indexOf('Edge') > -1 || window.navigator.userAgent.indexOf('Edg') > -1) {
+        document.body.style.display = 'none';
+        document.body.offsetHeight; // Trigger reflow
+        document.body.style.display = '';
+      }
     }
+    
+    // Update icon based on current theme
+    function updateThemeIcon(theme) {
+      if (theme === 'dark') {
+        themeIcon.className = 'bx bx-moon';
+      } else {
+        themeIcon.className = 'bx bx-sun';
+      }
+    }
+    
+    // Initialize theme and icon
+    applyTheme(currentTheme);
+    updateThemeIcon(currentTheme);
+    
+    // Theme toggle event listener
+    themeToggle.addEventListener('click', function() {
+      const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      
+      applyTheme(newTheme);
+      localStorage.setItem('theme', newTheme);
+      updateThemeIcon(newTheme);
+    });
   }
   
-  // Initialize icon
-  updateThemeIcon(currentTheme);
-  
-  // Theme toggle event listener
-  themeToggle.addEventListener('click', function() {
-    const currentTheme = document.documentElement.getAttribute('data-theme');
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    
-    document.documentElement.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
-    updateThemeIcon(newTheme);
-  });
+  // Initialize theme toggle
+  initThemeToggle();
 
   // Hero typed
   if ($('.typed').length) {
@@ -240,11 +260,21 @@
 
 })(jQuery);
 
-// Theme toggle for non-jQuery functionality
+// Theme toggle for non-jQuery functionality - Edge Compatible
 document.addEventListener('DOMContentLoaded', function() {
-  // Ensure theme is applied on page load
+  // Ensure theme is applied on page load with Edge compatibility
   const savedTheme = localStorage.getItem('theme') || 'light';
   document.documentElement.setAttribute('data-theme', savedTheme);
+  document.body.setAttribute('data-theme', savedTheme);
+  
+  // Force style recalculation for Microsoft Edge
+  if (window.navigator.userAgent.indexOf('Edge') > -1 || window.navigator.userAgent.indexOf('Edg') > -1) {
+    setTimeout(function() {
+      document.body.style.visibility = 'hidden';
+      document.body.offsetHeight; // Trigger reflow
+      document.body.style.visibility = 'visible';
+    }, 10);
+  }
 });
 
 
