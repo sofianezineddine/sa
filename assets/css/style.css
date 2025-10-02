@@ -207,18 +207,20 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .nav-menu a {
-  color: #a8a9b4;
+  color: #ffffff !important;
   font-size: 15px;
   font-weight: 500;
   text-decoration: none;
   transition: 0.3s;
   padding: 5px 0;
   position: relative;
+  opacity: 1 !important;
 }
 
 .nav-menu a:hover {
-  color: #fff;
+  color: #58a6ff;
   text-decoration: none;
+  opacity: 1;
 }
 
 .nav-menu a:hover::after {
@@ -232,7 +234,7 @@ h1, h2, h3, h4, h5, h6 {
   left: 0;
   width: 0;
   height: 2px;
-  background: #0073aa;
+  background: #58a6ff;
   transition: width 0.3s;
 }
 
@@ -305,7 +307,8 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Active navigation state */
 .nav-menu li.active a {
-  color: #fff;
+  color: #58a6ff;
+  opacity: 1;
 }
 
 .nav-menu li.active a::after {
