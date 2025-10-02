@@ -252,3 +252,64 @@ $$/      $$/  $$$$$$$/ $$$$$$$/        $$$$$$$/   $$$$$$$/     $/     $$$$$$$/ $
                                                                                `,
   "font-family:monospace"
 );
+// Theme Toggle
+const themeToggle = document.getElementById('theme-toggle');
+const body = document.body;
+const themeIcon = themeToggle.querySelector('i');
+
+// Load saved theme
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme === 'dark') {
+  body.classList.add('dark-mode');
+  themeIcon.className = 'bx bx-sun';
+}
+
+themeToggle.addEventListener('click', () => {
+  body.classList.toggle('dark-mode');
+  const isDark = body.classList.contains('dark-mode');
+  themeIcon.className = isDark ? 'bx bx-sun' : 'bx bx-moon';
+  localStorage.setItem('theme', isDark ? 'dark' : 'light');
+});
+
+// Language Toggle
+const languageSelect = document.getElementById('language-select');
+const translations = {
+  en: {
+    'Home': 'Home',
+    'About': 'About',
+    'Portfolio': 'Portfolio',
+    'Resume': 'Resume',
+    'Contact': 'Contact'
+  },
+  fr: {
+    'Home': 'Accueil',
+    'About': 'À propos',
+    'Portfolio': 'Portfolio',
+    'Resume': 'CV',
+    'Contact': 'Contact'
+  }
+};
+
+// Load saved language
+const savedLang = localStorage.getItem('language') || 'en';
+languageSelect.value = savedLang;
+updateLanguage(savedLang);
+
+languageSelect.addEventListener('change', (e) => {
+  const lang = e.target.value;
+  updateLanguage(lang);
+  localStorage.setItem('language', lang);
+});
+
+function updateLanguage(lang) {
+  document.querySelectorAll('[data-en]').forEach(el => {
+    const enText = el.getAttribute('data-en');
+    const frText = el.getAttribute('data-fr');
+    
+    if (lang === 'fr' && frText) {
+      el.textContent = frText;
+    } else if (lang === 'en' && enText) {
+      el.textContent = enText;
+    }
+  });
+}
