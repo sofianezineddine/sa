@@ -68,7 +68,7 @@ h1, h2, h3, h4, h5, h6 {
   bottom: 15px;
   background: var(--primary-color);
   color: #fff;
-  transition: display 0.5s ease-in-out;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   z-index: 99999;
   border: 2px solid var(--primary-color);
 }
@@ -79,13 +79,15 @@ h1, h2, h3, h4, h5, h6 {
   top: 7px;
   left: 8px;
   color: #fff;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .back-to-top:hover {
   color: #fff;
   background: var(--primary-hover);
-  transition: background 0.2s ease-in-out;
   border-color: var(--primary-hover);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 115, 170, 0.3);
 }
 
 /*--------------------------------------------------------------
@@ -146,7 +148,7 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: 0.3s;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   text-decoration: none;
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -155,7 +157,8 @@ h1, h2, h3, h4, h5, h6 {
 .hero-social-links a:hover {
   background: #0073aa;
   color: #fff;
-  transform: translateY(-3px);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 115, 170, 0.3);
 }
 
 /* Desktop Hero Adjustments */
@@ -494,11 +497,12 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 50%;
   border: 8px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease;
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .hero-image img:hover {
-  transform: scale(1.05);
+  transform: scale(1.02);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
 }
 
 /* #hero:before {
@@ -815,7 +819,7 @@ section {
 }
 
 .portfolio .portfolio-wrap {
-  transition: 0.3s;
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   position: relative;
   overflow: hidden;
   z-index: 1;
@@ -829,19 +833,19 @@ section {
   right: 0;
   top: 0;
   bottom: 0;
-  transition: all ease-in-out 0.3s;
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   z-index: 2;
   opacity: 0;
 }
 
 .portfolio .portfolio-wrap .portfolio-links {
-  opacity: 1;
+  opacity: 0;
   left: 0;
   right: 0;
   bottom: -60px;
   z-index: 3;
   position: absolute;
-  transition: all ease-in-out 0.3s;
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   display: flex;
   justify-content: center;
 }
@@ -851,16 +855,22 @@ section {
   font-size: 28px;
   text-align: center;
   background: rgba(20, 157, 221, 0.75);
-  transition: 0.3s;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   width: 50%;
 }
 
 .portfolio .portfolio-wrap .portfolio-links a:hover {
   background: rgba(20, 157, 221, 0.95);
+  transform: scale(1.05);
 }
 
 .portfolio .portfolio-wrap .portfolio-links a + a {
   border-left: 1px solid #37b3ed;
+}
+
+.portfolio .portfolio-wrap:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
 }
 
 .portfolio .portfolio-wrap:hover::before {
@@ -892,17 +902,20 @@ section {
   height: 54px;
   background: #0073aa;
   border-radius: 50%;
-  transition: 0.5s;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   border: 1px solid #0073aa;
 }
 
 .services .icon i {
   color: #fff;
   font-size: 24px;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .services .icon-box:hover .icon {
   background: #fff;
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 8px 20px rgba(0, 115, 170, 0.2);
 }
 
 .services .icon-box:hover .icon i {
@@ -1077,7 +1090,7 @@ section {
 .contact .info .social-links a {
   font-size: 18px;
   display: inline-block;
-  background: #333;
+  background: var(--primary-color);
   color: #fff;
   line-height: 1;
   padding: 8px 0;
@@ -1085,13 +1098,15 @@ section {
   text-align: center;
   width: 36px;
   height: 36px;
-  transition: 0.3s;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   margin-right: 10px;
 }
 
 .contact .info .social-links a:hover {
-  background: #0073aa;
+  background: var(--primary-hover);
   color: #fff;
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 6px 15px rgba(0, 115, 170, 0.3);
 }
 
 .contact .info .email:hover i, .contact .info .address:hover i, .contact .info .phone:hover i {
@@ -1763,6 +1778,21 @@ background: #37b3ed;
   color: var(--primary-color) !important;
 }
 
+/* Social Media Icons Fix for Dark Mode */
+.contact .info .social-links a {
+  background: var(--primary-color) !important;
+  color: #ffffff !important;
+}
+
+.contact .info .social-links a:hover {
+  background: var(--primary-hover) !important;
+  color: #ffffff !important;
+}
+
+.contact .info .social-links a i {
+  color: #ffffff !important;
+}
+
 .form-group label {
   color: var(--text-color) !important;
 }
@@ -1908,9 +1938,165 @@ button.show-all:hover {
   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease !important;
 }
 
-/* Ensure images and other elements don't transition */
-img, video, iframe, canvas, svg {
+/*--------------------------------------------------------------
+# Enhanced Seamless Hover Effects
+--------------------------------------------------------------*/
+
+/* Certification Cards */
+.certification-card {
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+  transform: translateY(0);
+}
+
+.certification-card:hover {
+  transform: translateY(-5px) !important;
+  box-shadow: 0 15px 40px var(--shadow) !important;
+}
+
+.certification-card .cert-image {
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.certification-card .cert-image img {
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.certification-card:hover .cert-image img {
+  transform: scale(1.02);
+}
+
+/* Skill Category Cards */
+.skill-category {
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+  transform: translateY(0);
+}
+
+.skill-category:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 12px 35px var(--shadow) !important;
+}
+
+.skill-category .category-header i {
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.skill-category:hover .category-header i {
+  transform: scale(1.1) rotate(5deg);
+}
+
+/* Portfolio Cards */
+.portfolio-card {
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+  transform: translateY(0);
+}
+
+.portfolio-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 15px 40px var(--shadow) !important;
+}
+
+.portfolio-card img {
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.portfolio-card:hover img {
+  transform: scale(1.02);
+}
+
+/* Service Items */
+.service-item {
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+  transform: translateY(0);
+}
+
+.service-item:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 12px 30px var(--shadow) !important;
+}
+
+/* Contact Info Cards */
+.contact-info {
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+
+.contact-info:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 10px 25px var(--shadow) !important;
+}
+
+/* Contact Form */
+.contact-form {
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+
+.contact-form:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 10px 25px var(--shadow) !important;
+}
+
+/* Button Hover Effects */
+.btn-link, .verify-link, button.show-all {
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+
+.btn-link:hover, .verify-link:hover, button.show-all:hover {
+  transform: translateY(-1px) scale(1.02) !important;
+  box-shadow: 0 6px 15px rgba(0, 115, 170, 0.3) !important;
+}
+
+/* Form Controls */
+.form-control {
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+
+.form-control:focus {
+  transform: translateY(-1px) !important;
+}
+
+/* Navigation Menu Items */
+.nav-menu a {
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+
+.nav-menu a::after {
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+
+/* Theme and Language Toggle Buttons */
+.theme-toggle, .language-toggle {
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+
+.theme-toggle:hover, .language-toggle:hover {
+  transform: scale(1.05) !important;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Progress Bars */
+.progress-bar {
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+
+/* General Card Hover Effect for any missed cards */
+[class*="card"]:not(.no-hover) {
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+
+[class*="card"]:not(.no-hover):hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 25px var(--shadow) !important;
+}
+
+/* Ensure videos, iframes, canvas, svg don't transition but allow images */
+video, iframe, canvas, svg {
   transition: none !important;
+}
+
+/* Allow smooth image transitions */
+img {
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
 }
 
 /* Language transition animations */
